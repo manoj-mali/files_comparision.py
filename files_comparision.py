@@ -50,6 +50,36 @@ def excel_files(file1, file2):
             if var == None:
                 print("No diff")
 
+    except ImportError:
+        inp = input("You don't have 'openpyxl' module . Type 'y' to install ")
+        if inp == 'y':
+            import os
+            try:
+                os.system('pip3 install openpyxl')
+            except:
+                os.system('pip install openpyxl')
+            print('----------------------------------------------------------------')
+            import openpyxl
+
+            wb1 = openpyxl.load_workbook(file1)
+            wb2 = openpyxl.load_workbook(file2)
+            sheet1 = wb1.active
+            sheet2 = wb2.active
+            rows1 = sheet1.max_row
+            rows2 = sheet2.max_row
+            col1 = sheet1.max_column
+            col2 = sheet2.max_column
+            var = None
+            for r1, r2 in zip(range(1, rows1+1), range(1, rows2+1)):
+                for c1, c2 in zip(range(1, col1+1), range(1, col2+1)):
+                    if sheet1.cell(row=r1, column=c1).value == sheet2.cell(row=r2, column=c2).value:
+                        print(end="")
+                    elif sheet1.cell(row=r1, column=c1).value != sheet2.cell(row=r2, column=c2).value:
+                        print('diff in  '+'('+str(r1)+', '+str(c1)+')'+' of file1 and file2'+'\n',sheet1.cell(row=r1, column=c1).value,'\n', sheet2.cell(row=r2, column=c2).value)
+                        var = 'Not none'
+            if var == None:
+                print("No diff")
+
 
 def text_files(file1, file2):
     file1_m = open(file1, 'r')
