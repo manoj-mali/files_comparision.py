@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'files_comparision',         # How you named your package folder (MyLib)
   packages = ['files_comparision'],   # Chose the same as "name"
-  version = '1.0',      # Start with a small number and increase it with every change you make
+  version = '1.0.4',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Used to compare 2 files',   # Give a short description about your library
   author = 'PAVANKUMAR VENGADESAPPA',                   # Type in your name
